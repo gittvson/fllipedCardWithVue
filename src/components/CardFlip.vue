@@ -2,7 +2,7 @@
   <div class="card">
     <div
       class="card__inner"
-      :class="{ is_flipped: isFlipped }"
+      :class="{ is_flipped: isFlipped, is_disable : isDisable}"
       @click="onToggle"
     >
       <div class="card__face card__face--front">
@@ -29,20 +29,26 @@ export default {
     card:{
       type: [String, Number, Array, Object],
       require: true,
-    }
+    },
   },
   data() {
     return {
       isFlipped: false,
+      isDisable : false,
     };
   },
   methods: {
     onToggle() {
-      this.isFlipped = !this.isFlipped;
-      if(this.isFlipped) this.$emit('onFlip', this.card )
+      if(this.isDisable != true){
+        this.isFlipped = !this.isFlipped;
+        if(this.isFlipped) this.$emit('onFlip', this.card );
+      }
     },
     onFlip(){
       this.isFlipped = false;
+    },
+    changeModeToDisable(){
+      this.isDisable = true;
     }
   },
 };
@@ -96,5 +102,8 @@ export default {
   background-repeat: no-repeat;
   height: 100%;
   width: 100%;
+}
+.is_disable{
+  cursor: default;
 }
 </style>

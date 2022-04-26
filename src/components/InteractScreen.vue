@@ -36,8 +36,12 @@ export default {
       this.rules.push(card);
 
       if (this.rules.length == 2 && this.rules[0].value == this.rules[1].value) {
+
         console.log("Right");
+        this.$refs[`card-${this.rules[0].index}`][0].changeModeToDisable();
+        this.$refs[`card-${this.rules[1].index}`][0].changeModeToDisable();
         this.rules = [];
+
       } else if (this.rules.length == 2 && this.rules[0].value != this.rules[1].value) {
         console.log("Wrong");
         setTimeout(()=>{
