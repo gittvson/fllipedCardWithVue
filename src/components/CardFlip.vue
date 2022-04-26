@@ -41,6 +41,9 @@ export default {
       this.isFlipped = !this.isFlipped;
       if(this.isFlipped) this.$emit('onFlip', this.card )
     },
+    onFlip(){
+      this.isFlipped = false;
+    }
   },
 };
 </script>
